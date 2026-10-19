@@ -1,3 +1,19 @@
 :root{color-scheme:light;--bg:#f7f4ed;--text:#443b31;--muted:#827465;--accent:#a38661;--surface:#fffdf8;--border:#d9cebd;--status:#eee6da;--focus:#957044}
 :root[data-theme="dark"]{color-scheme:dark;--bg:#191b1e;--text:#e7e3dc;--muted:#b2aba0;--accent:#d0b38a;--surface:#25282d;--border:#45494f;--status:#2b2e33;--focus:#e0bd8c}
 body{font:15px 'Segoe UI','Microsoft YaHei',sans-serif;background:var(--bg);color:var(--text);margin:0}main{max-width:850px;margin:50px auto;padding:30px}small{letter-spacing:3px;color:var(--accent)}h1{font-weight:500;font-size:34px}p{line-height:1.8;color:var(--muted)}label{display:block;margin:18px 0}input{display:block;width:95%;max-width:650px;margin-top:8px}input,button,select{font:inherit;border:1px solid var(--border);padding:11px 15px;border-radius:8px;background:var(--surface);color:inherit}button{cursor:pointer;margin:4px}button:disabled{opacity:.45;cursor:default}hr{border:0;border-top:1px solid var(--border);margin:25px 0}#status{white-space:pre-wrap;background:var(--status);padding:18px;border-radius:12px}.item{border-bottom:1px solid var(--border);padding:15px;white-space:pre-wrap;overflow-wrap:anywhere}.theme-control{display:flex;align-items:center;justify-content:flex-end;gap:10px;margin:0 0 18px;color:var(--muted);font-size:13px}.theme-control select{padding:8px 12px}button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--focus);outline-offset:3px}@media(max-width:600px){main{margin:15px auto;padding:22px}}
+:root{--ease-out:cubic-bezier(.2,.7,.2,1);scrollbar-gutter:stable}
+button{touch-action:manipulation;-webkit-tap-highlight-color:transparent;transition:transform 180ms var(--ease-out),background-color 140ms ease,border-color 140ms ease,box-shadow 180ms ease}
+button:active:not(:disabled){transform:translateY(1px) scale(.976);transition-duration:85ms;box-shadow:inset 0 1px 4px #00000018}
+@media(hover:hover){button:hover:not(:disabled){border-color:var(--accent);box-shadow:0 2px 8px #0000000d}}
+button:disabled{transform:none;box-shadow:none}
+input,select{transition:border-color 140ms ease,box-shadow 140ms ease}
+input:focus,select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 15%,transparent)}
+#status{border:1px solid var(--border);transition:border-color 160ms ease}
+@media(pointer:coarse){button,select{min-height:42px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}button:active:not(:disabled){transform:none}}
+button{position:relative;overflow:hidden;transition:transform 260ms cubic-bezier(.16,1,.3,1),background-color 140ms ease,border-color 140ms ease,box-shadow 200ms ease}
+button:active:not(:disabled){transform:translateY(2px) scale(.94);background:color-mix(in srgb,var(--accent) 22%,var(--surface));transition-duration:75ms;box-shadow:inset 0 2px 5px #00000025}
+@media(hover:hover){button:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 5px 14px #00000024}button:hover:active:not(:disabled){transform:translateY(2px) scale(.94)}}
+.tap-flash::after{content:'';position:absolute;inset:0;pointer-events:none;border-radius:inherit;background:radial-gradient(circle at var(--tap-x,50%) var(--tap-y,50%),#e0ae5a99 0%,#d3a05644 35%,transparent 75%);animation:tap-flash 480ms ease-out both}
+@keyframes tap-flash{0%{opacity:.9;transform:scale(.75)}100%{opacity:0;transform:scale(1.25)}}
+@media(prefers-reduced-motion:reduce){button:hover:not(:disabled),button:active:not(:disabled){transform:none!important}.tap-flash::after{animation:none!important;opacity:.25}}

@@ -2,11 +2,11 @@
 
 把 X、抖音、知乎里收藏过的链接，整理进自己的本地收藏馆。
 
-**[下载 0.2.0 预览版](https://github.com/konghenfuxue-cpu/shicang/releases/tag/v0.2.0)** · [安装教程](docs/usage.md) · [采集方法](docs/how-it-works.md) · [问题反馈](https://github.com/konghenfuxue-cpu/shicang/issues/new/choose)
+**[下载 0.2.1 正式版](https://github.com/konghenfuxue-cpu/shicang/releases/latest)** · [安装教程](docs/usage.md) · [采集方法](docs/how-it-works.md) · [更新记录](CHANGELOG.md) · [问题反馈](https://github.com/konghenfuxue-cpu/shicang/issues/new/choose)
 
 Python 标准库 + SQLite + Chrome/Edge 扩展，无第三方 Python 依赖。扩展在你已经登录的网站页面上读取可见内容，预览后由你确认入库，数据保存在本机。
 
-> 当前为手动扫描的早期预览版。尚无定时同步、自动登录或全历史完整性保证。下载包是可运行源码，**不是 EXE 安装包**，需要先安装 Python。
+> 当前正式版采用手动扫描，尚无定时同步、自动登录或全历史完整性保证。下载包是可运行源码，**不是 EXE 安装包**，需要先安装 Python。
 
 ## 界面
 
@@ -31,13 +31,13 @@ Python 标准库 + SQLite + Chrome/Edge 扩展，无第三方 Python 依赖。�
 
 前提：Python **3.10+**、Chrome 或 Edge。请确认终端运行 `python --version` 能显示版本。
 
-1. **下载并启动。** 从 [Releases](https://github.com/konghenfuxue-cpu/shicang/releases/tag/v0.2.0) 下载 `shicang-0.2.0.zip`，解压到固定目录，Windows 双击 `Start.cmd`。服务会自动打开本地收藏馆；保留启动窗口。
+1. **下载并启动。** 从 [Releases](https://github.com/konghenfuxue-cpu/shicang/releases/latest) 下载 `shicang-0.2.1.zip`，解压到固定目录，Windows 双击 `Start.cmd`。服务会自动打开本地收藏馆；保留启动窗口。
 2. **加载扩展。** 打开 `chrome://extensions` 或 `edge://extensions`，开启开发者模式，选择“加载已解压/未打包的扩展程序”，选解压目录里的 `extension`。在收藏馆点击“复制扩展连接配置”，粘贴到采集面板的密钥栏后保存，地址会自动填入。
 3. **扫描并保存。** 打开已登录的目标网站收藏内容页，点击拾藏扩展图标。先扫描 2～3 轮，点击“检查新增”，确认后提交。刷新收藏馆查看结果。
 
 完整步骤、三站入口与常见问题见 **[安装与使用教程](docs/usage.md)**。
 
-其他系统可尝试 `python3 server.py`；当前实际启动验收在 Windows 完成，Linux CI 仅验证服务与数据逻辑。
+其他系统可尝试 `python3 server.py`；当前实际启动验收在 Windows 完成，尚未进行 Linux 实机或远端 CI 验证。
 
 ## 这个方法如何工作
 
@@ -63,11 +63,13 @@ Python 标准库 + SQLite + Chrome/Edge 扩展，无第三方 Python 依赖。�
 
 ## 更新与验证
 
-**0.2.0**：支持三平台、书签/喜欢/收藏分类、平台 ID 隔离、采集页深浅色主题、默认端口不可用时自动选择其他端口。
+**0.2.1 正式版**：增强按钮按压、点击光晕和卡片悬停反馈；弹窗平稳开关；标记已看和保存备注按卡片更新，减少列表重建和滚动跳动；提供操作等待、防重复点击和减少动态效果支持。
+
+保留0.2.0的三平台采集、来源分类、去重、主题和端口回退功能。升级时保留原`data`目录，并在保存采集结果后重新加载扩展。
 
 本机已验证 Windows 启动、真实 X 采集入库展示、抖音收藏/喜欢与滚动适配器、知乎回答解析与翻页。抖音与知乎的其他内容类型、不同账号和后续站点改版仍需持续验证，不将单次样本当作全站兼容保证。
 
-自动化检查：10 项 Python 测试；X/抖音/知乎 DOM 夹具测试；主题切换测试；JavaScript 语法检查。上述为本机结果，运行方法见 [开发与贡献](CONTRIBUTING.md)。仓库附带 [GitHub Actions 配置示例](docs/ci-tests.yml.example)，当前未启用远端 CI。
+自动化检查：10 项 Python 测试；X/抖音/知乎 DOM 夹具测试；主题、按钮等待/防连点及点击光晕测试；JavaScript 语法检查。浏览器已验证代表性编辑操作、长列表滚动稳定性、窄屏和减少动态效果模式。上述为本机结果，运行方法见 [开发与贡献](CONTRIBUTING.md)。仓库附带 [GitHub Actions 配置示例](docs/ci-tests.yml.example)，当前未启用远端 CI。
 
 ## 参考、隐私与许可证
 

@@ -26,6 +26,8 @@ jobs:
       - run: node tests/parser.test.cjs
       - run: node tests/adapters.test.cjs
       - run: node tests/theme.test.cjs
+      - run: node tests/ui-feedback.test.cjs
+      - run: node tests/tap-feedback.test.cjs
       - run: node --check web/app.js
       - run: node --check extension/panel.js
       - run: node --check extension/adapters.js

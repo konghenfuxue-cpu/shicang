@@ -9,6 +9,8 @@ python -m unittest discover -s tests -v
 node tests/parser.test.cjs
 node tests/adapters.test.cjs
 node tests/theme.test.cjs
+node tests/ui-feedback.test.cjs
+node tests/tap-feedback.test.cjs
 node --check web/app.js
 node --check extension/panel.js
 node --check extension/adapters.js
