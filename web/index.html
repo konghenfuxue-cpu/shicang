@@ -1,0 +1,8 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>拾藏 · X 收藏馆</title><link rel="stylesheet" href="/style.css"></head><body>
+<header><div class="brand">拾藏 <span>PRIVATE COLLECTION</span></div><button id="history">导入记录</button><button id="export">导出 JSON</button><label class="button">导入 JSON<input id="file" type="file" accept=".json" hidden></label></header>
+<section class="intro"><small>把喜欢的，留在身边。</small><h1>你的灵感收藏馆<span> / X</span></h1><p>那些值得再次打开的文字、画作与灵感。</p></section>
+<section id="connection"><label>连接密钥 <input id="key" type="password" placeholder="从 data/connection-key.txt 复制"></label><button id="connect">连接收藏馆</button><button id="copy">复制扩展连接配置</button></section>
+<nav><input id="search" placeholder="搜索作者、正文、标签或备注…"><select id="collection"><option value="">所有收藏夹</option></select><select id="tag"><option value="">所有标签</option></select><select id="read"><option value="">全部状态</option><option value="unread">还没看</option><option value="read">已看</option></select><select id="sort"><option value="new">最近收录</option><option value="old">最早收录</option></select></nav>
+<main><div id="count"></div><div id="cards"></div><div id="empty">还没有收藏<br><span>启动本地服务后，在浏览器扩展中扫描 X 收藏，或导入扩展导出的 JSON。</span></div></main><p id="message" role="status"></p>
+<dialog id="editor"><form method="dialog"><h2>整理收藏</h2><label>标签（用逗号分隔）<input id="tags"></label><label>备注<textarea id="note" rows="5"></textarea></label><div class="actions"><button value="cancel">取消</button><button id="save" value="default">保存</button></div></form></dialog>
+<dialog id="records"><h2>最近导入</h2><div id="record-list"></div><button id="close-records">关闭</button></dialog><script src="/app.js"></script></body></html>

@@ -1,0 +1,32 @@
+name: 报错或采集问题
+description: 反馈启动、页面采集或收藏馆问题
+body:
+  - type: markdown
+    attributes:
+      value: 请遮住账号、个人内容和连接密钥，不要上传Cookie、数据库或签名私钥。
+  - type: input
+    id: version
+    attributes:
+      label: 版本与运行环境
+      placeholder: 0.2.0 / Windows / Python 3.11 / Chrome
+    validations:
+      required: true
+  - type: dropdown
+    id: platform
+    attributes:
+      label: 出问题的位置
+      options:
+        - 启动或本地收藏馆
+        - X
+        - 抖音
+        - 知乎
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: 复现步骤、预期与实际结果
+    validations:
+      required: true
+  - type: textarea
+    id: error
+    attributes:
+      label: 错误提示或已遮挡隐私的截图

@@ -1,0 +1,15 @@
+const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
+const source=fs.readFileSync('extension/panel.js','utf8');const fn=source.slice(source.indexOf('function collectVisible()'),source.indexOf("$('#scan').onclick"));
+const article={querySelector(selector){return {'time':{closest:()=>({href:'https://x.com/artist/status/123'})},'[data-testid="User-Name"]':{innerText:'画师\n@artist'},'[data-testid="tweetText"]':{innerText:'作品测试'},'[data-testid="tweetPhoto"] img':{src:'https://pbs.twimg.com/media/demo.jpg'}}[selector]}};
+const context={URL,location:{origin:'https://x.com',pathname:'/i/bookmarks'},document:{querySelectorAll:()=>[article,{querySelector:()=>null}]}};vm.createContext(context);vm.runInContext(fn,context);let result=vm.runInContext('collectVisible()',context);assert.equal(result.length,1);assert.equal(result[0].source_id,'123');assert.equal(result[0].author_name,'画师');context.location.pathname='/home';assert.throws(()=>vm.runInContext('collectVisible()',context));console.log('PASS: DOM parsing, missing permalink and wrong-page rejection');
+context.location.pathname='/i/history';
+context.document.querySelector=()=>({innerText:'书签',textContent:'书签',getAttribute:()=>'/i/bookmarks'});
+assert.equal(vm.runInContext('collectVisible()',context).length,1);
+context.document.querySelector=()=>({innerText:'喜欢',textContent:'喜欢',getAttribute:()=>'/i/likes'});
+assert.equal(vm.runInContext('collectVisible()',context)[0].source_types[0],'like');
+context.location.pathname='/i/history/likes';
+assert.equal(vm.runInContext('collectVisible()',context)[0].source_types[0],'like');
+context.document.querySelector=()=>null;
+context.location.pathname='/i/history';
+assert.throws(()=>vm.runInContext('collectVisible()',context),/分类/);
+console.log('PASS: history bookmarks and likes classified; unrecognized tabs rejected');

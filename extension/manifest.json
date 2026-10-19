@@ -1,0 +1,1 @@
+{"manifest_version":3,"name":"拾藏 · 跨平台收藏采集","version":"0.2.0","description":"采集 X 书签/喜欢、抖音收藏/喜欢、知乎收藏夹，保存到本机收藏馆。","permissions":["activeTab","scripting","storage"],"host_permissions":["http://127.0.0.1/*"],"action":{"default_title":"打开拾藏采集面板"},"background":{"service_worker":"background.js"}}
